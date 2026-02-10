@@ -1,36 +1,138 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Frontend Repository – Commit Convention Guide
 
-## Getting Started
+## 📌 Objetivo
+Este repositorio frontend adopta **Conventional Commits** para mantener un historial de cambios claro, profesional y estandarizado entre todos los miembros del equipo.
 
-First, run the development server:
+Esta convención es **obligatoria** para todos los commits.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+---
+
+## 🧱 Estructura del mensaje de commit
+
+```
+<type>(optional-scope): <short description>
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Ejemplo
+```
+feat(login): add remember me option
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🏷️ Tipos de commit permitidos
 
-## Learn More
+| Tipo | Uso |
+|----|----|
+| feat | Nueva funcionalidad UI |
+| fix | Corrección de bugs visuales o lógicos |
+| style | CSS, Tailwind, estilos, formato |
+| refactor | Refactor de componentes |
+| perf | Mejora de rendimiento |
+| test | Tests unitarios / e2e |
+| docs | Documentación |
+| build | Build, Vite, Webpack |
+| ci | Pipelines CI/CD |
+| chore | Configuraciones generales |
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🎯 Scopes recomendados (Frontend)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Usar el scope para indicar el área afectada:
 
-## Deploy on Vercel
+```
+feat(auth)
+fix(navbar)
+style(buttons)
+refactor(components)
+perf(images)
+build(vite)
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Scopes comunes:
+- auth
+- layout
+- navbar
+- footer
+- components
+- pages
+- hooks
+- services
+- assets
+- styles
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## 📏 Reglas obligatorias
+
+✔ Usar inglés  
+✔ Tiempo imperativo (add, fix, update)  
+✔ Máx. 72 caracteres  
+✔ Todo en minúsculas  
+❌ No usar punto final  
+❌ No mensajes genéricos  
+
+### Correcto
+```
+fix(navbar): prevent overflow on mobile
+```
+
+### Incorrecto
+```
+Navbar fixed.
+```
+
+---
+
+## 🔐 Enforzar la convención (Recomendado)
+
+### Instalar dependencias
+```bash
+npm install -D commitlint @commitlint/config-conventional husky
+```
+
+### commitlint.config.js
+```js
+module.exports = {
+  extends: ['@commitlint/config-conventional'],
+};
+```
+
+### Configurar Husky
+```bash
+npx husky install
+npx husky add .husky/commit-msg "npx --no-install commitlint --edit $1"
+```
+
+Ahora los commits inválidos serán rechazados.
+
+---
+
+## 📦 Ejemplos reales de commits
+
+```
+feat(components): add reusable modal
+fix(styles): resolve dark mode contrast issue
+style(buttons): unify primary button styles
+refactor(pages): split dashboard into sections
+build(vite): optimize production build
+```
+
+---
+
+## 📢 Regla del equipo
+
+> Ningún commit que no cumpla esta convención será aceptado en main/develop.
+
+---
+
+## ✅ Beneficios
+- Historial limpio
+- Mejor revisión de PR
+- Versionado automático
+- Trabajo en equipo profesional
+
+---
+
+📄 Documento obligatorio para todo el equipo frontend.
